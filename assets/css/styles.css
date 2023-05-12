@@ -1,0 +1,18 @@
+body {
+    background-color: #343a40; 
+    color: #fff; 
+  }
+  .navbar {
+    background-color: #212529; 
+  }
+  
+  .navbar-brand {
+    color: goldenrod;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #fff; 
+  }
+h1 {
+    color: green;
+}
