@@ -16,3 +16,11 @@ body {
 h1 {
     color: green;
 }
+
+p {
+  color: #e0a33357;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
