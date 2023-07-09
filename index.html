@@ -23,10 +23,7 @@
             <a class="nav-link" href="#">Главная</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">О нас</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Сервисы</a>
+            <a class="nav-link" href="#">Сервисы и сервера</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Связь с нами</a>
@@ -35,7 +32,6 @@
       </div>
     </nav>
     <div class="container mt-5">
-      <h1 class="animated-header">Heypers Team</h1> 
       <script>
            var phrases = [
       "Администратор придет завтра",
@@ -56,19 +52,17 @@
     }        
         window.onload = randomizeText;
       </script>
-      <p id="randomText"> Ничесе</p>
     </div>
+    <div class="about">
+      <h2>О нас</h2>
+      <div class="expandable-content" id="about-content">
+        <p class="random_text", id="randomText"> Ничесе</p>
+      </div>
+  </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function(){
-          $(".animated-header").hover(function(){
-            $(this).text("Какой та текст");
-          }, function(){
-            $(this).text("Heypers Project");
-          });
-        });
-      </script>
+
 </body>
 </html>

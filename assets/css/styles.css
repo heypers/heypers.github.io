@@ -31,9 +31,18 @@ h1 {
 }
 
 p {
-  color: #e0a33357;
+  color: #e0a333;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+}
+.about {
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 20px;
+}
+p.random_text {
+  position: relative;
 }
