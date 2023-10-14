@@ -1,68 +1,75 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heypers Project</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
-    <!-- Умный кода не будет -->
     <link rel="stylesheet" href="assets/css/styles.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-black">
-        <img class="icon" src="assets/images/hpj.png" width="50px" height="50px" />
-      <a class="navbar-brand" href="#">Heypers Project</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Главная</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Сервисы и сервера</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Связь с нами</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container mt-5">
-      <script>
-           var phrases = [
-      "Администратор придет завтра",
-      "Бархатная тяга хухпенс",
-      "И помните: ..я забыл",
-      "Куда мы лезем боже",
-      "Покупка гаража",
-      "Уволен",
-      "Платно",
-      "АшЭрЭль форевер"
-    ];
-    
-    function randomizeText() {
-      var textElement = document.getElementById("randomText");
-      var randomIndex = Math.floor(Math.random() * phrases.length);
-      var randomizedPhrase = phrases[randomIndex];
-      textElement.innerHTML = randomizedPhrase;
-    }        
-        window.onload = randomizeText;
-      </script>
-    </div>
-    <div class="about">
-      <h2>О нас</h2>
-      <div class="expandable-content" id="about-content">
-        <p class="random_text", id="randomText"> Ничесе</p>
-      </div>
-  </div>
-    <script src="src/discord.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Heypers Project</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#links">Links</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Heypers Project is a community of passionate gamers and developers. We strive to create unique and exciting gaming experiences for our players. Our servers are designed to provide a fun and welcoming environment for everyone.</p>
+        </div>
+    </section>
+
+    <section id="links">
+        <div class="container">
+            <h2>Our Social links</h2>
+            <div class="server-card">
+                <h3>Heypers Project</h3>
+                <div class="social-buttons">
+                    <a href="https://t.me/heypers_project" class="telegram-button">Telegram</a>
+                    <a href="https://discord.gg/N8MYbANVJ6" class="discord-button">Discord</a>
+                    <a href="https://github.com/heypers" class="github-button">GitHub</a>
+                  </div>
+            </div>
+            <!-- <div class="server-card">
+                <h3></h3>
+                <p></p>
+                <a href="#"></a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- <section id="team">
+      <div class="container">
+          <h2></h2>
+          <div class="team-member">
+              <img id="avatar" src="" alt="User Avatar">
+              <h3></h3>
+              <p></p>
+          </div>
+          <div class="team-member">
+              <img src="images/avatar2.jpg" alt="Team Member 2">
+              <h3></h3>
+              <p></p>
+          </div>
+      </div>
+    </section> -->
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or feedback, feel free to reach out to us. We'd love to hear from you!</p>
+            <a href="mailto:heypers.team@gmail.com">heypers.team@gmail.com</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Heypers Project. All rights reserved.</p>
+    </footer>
 </body>
 </html>
