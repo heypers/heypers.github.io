@@ -121,6 +121,30 @@ section h2 {
   background-color: #3498db;
 }
 
+#about h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#about p {
+  font-size: 18px;
+  line-height: 1.5;
+  color:rgb(20, 68, 78) !important;
+  text-align: justify;
+}
+
+#about p::before {
+  content: '•';
+  color: #ff6347;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+#about p::first-letter {
+  font-size: 24px;
+  color: #ff6347;
+}
+
 .team-list {
   list-style: none;
   text-align: center;
