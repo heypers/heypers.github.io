@@ -20,6 +20,39 @@ body {
   padding: 20px;
 }
 
+.dropdown {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  fill: #fff;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: linear-gradient(to bottom, #0c4e7a, #2c3e50);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 header {
   background-color: #2980b9;
   padding: 20px 0;
@@ -56,15 +89,48 @@ section h2 {
   margin-bottom: 20px;
 }
 
+.login-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  fill: #fff;
+}
+
+.login-block {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.login-block input[type="text"],
+.login-block input[type="password"],
+.login-block button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.login-block button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-block button:hover {
+  background-color: #3498db;
+}
+
+.team-list {
+  list-style: none;
+  text-align: center;
+}
+
 .server-card {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 20px;
   margin: 20px;
-}
-
-.server-card h3 {
-  font-size: 24px;
 }
 
 .server-card p {
@@ -125,7 +191,8 @@ section h2 {
   margin-top: 20px;
 }
 
-#toggle-en, #toggle-ru {
+#toggle-en,
+#toggle-ru {
   margin: 0 10px;
   background-color: #007BFF;
   color: #fff;
@@ -134,7 +201,8 @@ section h2 {
   cursor: pointer;
 }
 
-#toggle-en:hover, #toggle-ru:hover {
+#toggle-en:hover,
+#toggle-ru:hover {
   background-color: #0056b3;
 }
 
