@@ -12,14 +12,6 @@
 <body>
     <header>
         <h1>Heypers Project</h1>
-        <div class="dropdown">
-            <img src="https://img.icons8.com/material-outlined/24/000000/menu.png" alt="Menu" />
-            <div class="dropdown-content">
-                <a href="#">Аккаунт</a>
-                <a href="#">Настройки</a>
-                <a href="#">Логин</a>
-            </div>
-        </div>
         <nav>
             <ul>
                 <li><a href="#about">О нас</a></li>
@@ -27,38 +19,33 @@
                 <li><a href="#contact">Контакт</a></li>
             </ul>
         </nav>
-        <div class="login-icon" onclick="goToLoginPage()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M0 0h24v24H0z" fill="none" />
-                <path
-                    d="M18 2H6c-1.1 0-1.99.9-1.99 2L4 20l4-4h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 12l-4 4H6l4-4h2zm4-5c0-1.66-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3zm-3 2c-.55 0-1-.45-1-1s.45-1 1-1s1 .45 1 1s-.45 1-1 1z" />
-            </svg>
-        </div>
     </header>
 
 
     <section id="about">
         <div class="container">
             <h2>О нас</h2>
-            <p>Heypers Project - объединяет не только отдельных людей, но и целые сообщества в проект. В его рамках
-                предоставляются следующие услуги:</p>
-            <p>
-                Управление: мы координируем работу проекта, обеспечивая эффективность и целесообразность процессов.
-            </p>
-            <p>
-                Менеджмент: наши менеджеры отслеживают ход проекта, контролируют и решают задачи по оптимизации работы.
-            </p>
-            <p>
-                Модерация: наш штат модераторов обеспечивает соблюдение правил сообщества, способствуя созданию
-                комфортной среды для обсуждений и взаимодействия.
-            </p>
-            <p>
-                Разработка: наши разработчики создают и сопровождают технологическую часть проекта, реализуя новые
-                функции и улучшая производительность.
-            </p>
-            <p>
-                Все вышеперечисленные услуги предоставляются исключительно для Вас.
-            </p>
+            <section id="animated-cards">
+                <div class="animated-card">
+                    <h3>Модерация</h3>
+                    <p>Наш штат модераторов обеспечивает соблюдение правил сообщества, способствуя созданию комфортной
+                        среды для обсуждений и взаимодействия.</p>
+                </div>
+                <div class="animated-card">
+                    <h3>Управление</h3>
+                    <p>Мы координируем работу проекта, обеспечивая эффективность и целесообразность процессов.</p>
+                </div>
+                <div class="animated-card">
+                    <h3>Менеджмент</h3>
+                    <p>Наши менеджеры отслеживают ход проекта, контролируют и решают задачи по оптимизации работы.</p>
+                </div>
+                <div class="animated-card">
+                    <h3>Разработка</h3>
+                    <p>Наши разработчики создают и сопровождают технологическую часть проекта, реализуя новые функции и
+                        улучшая производительность.</p>
+                </div>
+            </section>
+
         </div>
     </section>
 
@@ -66,7 +53,6 @@
         <div class="container">
             <h2>Наши социальные ссылки</h2>
             <div class="server-card">
-                <h3>Heypers Project</h3>
                 <div class="social-buttons">
                     <a href="https://t.me/heypers_project" class="telegram-button">Telegram</a>
                     <a href="https://discord.gg/N8MYbANVJ6" class="discord-button">Discord</a>
@@ -76,21 +62,56 @@
         </div>
     </section>
 
-    <!-- <section id="team">
-      <div class="container">
-          <h2></h2>
-          <div class="team-member">
-              <img id="avatar" src="" alt="User Avatar">
-              <h3></h3>
-              <p></p>
-          </div>
-          <div class="team-member">
-              <img src="images/avatar2.jpg" alt="Team Member 2">
-              <h3></h3>
-              <p></p>
-          </div>
-      </div>
-    </section> -->
+    <section id="team">
+        <div class="container">
+            <h2>Наша команда</h2>
+            <section id="animated-cards">
+                <div class="team-member">
+                    <h3>Mr_Fortuna</h3>
+                    <p>Я как владелец данного проекта могу сказать что теперь - это моя жизнь.</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/702443229924032512" class="discord-button">Discord</a>
+                    <a href="https://github.com/mrf0rtuna4" class="github-button">GitHub</a>
+                </div>
+                <div class="team-member">
+                    <h3>Helaney</h3>
+                    <p>Хухпенс прожектор для меня - это место, где я могу выложить все свои идеи в реальность, расслабиться и просто провести время с хорошими людьми.</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/386439272455995394" class="discord-button">Discord</a>
+                </div>
+                <div class="team-member">
+                    <h3>Dinari</h3>
+                    <p>Для меня этот проект, место где я могу чувствовать себя хорошо. А еще владелец лапочка</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/1016741915057729557" class="discord-button">Discord</a>
+                </div>
+                <div class="team-member">
+                    <h3>Reaper</h3>
+                    <p>Это проект близкий к моему сердцу, с неповторимой историей, с хорошими людьми, которые всегда тебя поддерживают, интересными и весёлыми ивентами, заботящейся и честной администрацией. Это веселое место со своим интересным лором, где я могу отдохнуть от серой реальности и безразличных людей.</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/831521781264154653" class="discord-button">Discord</a>
+                </div>
+                <div class="team-member">
+                    <h3>Someone</h3>
+                    <p>Ну типо прикольный проект с ивентами, но актива мало</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/632573126714195970" class="discord-button">Discord</a>
+                </div>
+                <div class="team-member">
+                    <h3>Proton1k</h3>
+                    <p>я ем</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/726329794576384010" class="discord-button">Discord</a>
+                </div>
+                <div class="team-member">
+                    <h3>Ики</h3>
+                    <p>чо</p>
+                    <h5>Контакты</h5>
+                    <a href="https://discord.com/users/1139252319653998642" class="discord-button">Discord</a>
+                </div>
+            </section>
+        </div>
+    </section>
 
     <section id="contact">
         <div class="container">

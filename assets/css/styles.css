@@ -4,14 +4,29 @@
   box-sizing: border-box;
 }
 
-
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #3498db, #2c3e50);
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(55deg, #000000, #ff6347, #ffa500, #2c3e50);
+  background-size: 400% 400%;
+  animation: gradientAnimation 5s ease infinite;
   color: #fff;
   line-height: 1.6;
   margin: 0;
   padding: 0;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .container {
@@ -20,41 +35,45 @@ body {
   padding: 20px;
 }
 
-.dropdown {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  cursor: pointer;
-  fill: #fff;
-  display: inline-block;
+#animated-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: linear-gradient(to bottom, #0c4e7a, #2c3e50);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+.animated-card {
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeIn 5s ease forwards;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+.animated-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #fff;
+  margin-top: 10px;
 }
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
 
-.dropdown:hover .dropdown-content {
-  display: block;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header {
-  background-color: #2980b9;
+  background-color: #8b0000;
   padding: 20px 0;
   text-align: center;
 }
@@ -62,6 +81,7 @@ header {
 header h1 {
   font-size: 36px;
   margin-bottom: 20px;
+  color: gold;
 }
 
 nav ul {
@@ -89,73 +109,22 @@ section h2 {
   margin-bottom: 20px;
 }
 
-.login-icon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  fill: #fff;
-}
-
-.login-block {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.login-block input[type="text"],
-.login-block input[type="password"],
-.login-block button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.login-block button {
-  background-color: #2980b9;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.login-block button:hover {
-  background-color: #3498db;
-}
-
 #about h2 {
   text-align: center;
   margin-bottom: 50px;
 }
 
-#about p {
-  font-size: 18px;
-  line-height: 1.5;
-  color:rgb(20, 68, 78) !important;
-  text-align: justify;
-}
 
-#about p::before {
-  content: '•';
-  color: #ff6347;
-  font-size: 20px;
-  margin-right: 5px;
-}
-
-#about p::first-letter {
-  font-size: 24px;
-  color: #ff6347;
-}
-
-.team-list {
-  list-style: none;
-  text-align: center;
-}
-
-.server-card {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 5px;
+/* .server-card {
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.1);
+  justify-content: space-around;
+  border-radius: 10px;
   padding: 20px;
-  margin: 20px;
-}
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeIn 5s ease forwards;
+} */
 
 .server-card p {
   margin: 10px 0;
@@ -182,18 +151,17 @@ section h2 {
 }
 
 .social-buttons a {
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  width: 30%;
+  justify-content: space-around;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeIn 5s ease forwards;
 }
 
 .telegram-button {
-  background-color: #0088cc;
+  background-color: #ffa500;
 }
 
 .discord-button {
@@ -201,37 +169,71 @@ section h2 {
 }
 
 .github-button {
-  background-color: #333;
+  background-color: #000;
 }
 
 
 .social-buttons a:hover {
   background-color: #444;
 }
-
-#language-toggle {
+/* 
+#team {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+} */
+
+#team h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.team-member {
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeIn 5s ease forwards;
+}
+
+.team-member h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.team-member p {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.team-member h5 {
+  font-size: 16px;
+  color: #fff;
   margin-top: 20px;
 }
 
-#toggle-en,
-#toggle-ru {
-  margin: 0 10px;
-  background-color: #007BFF;
+.team-member a {
+  display: inline-block;
+  padding: 5px 20px;
+  margin-top: 10px;
   color: #fff;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-#toggle-en:hover,
-#toggle-ru:hover {
-  background-color: #0056b3;
+.team-member a:hover {
+  background-color: #677bc4;
 }
+
 
 footer {
-  background-color: #2980b9;
+  background-color: #8b0000;
   text-align: center;
   padding: 10px 0;
   color: #fff;
