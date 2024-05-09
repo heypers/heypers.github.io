@@ -53,6 +53,7 @@ body {
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
+  animation: fadeIn 5s ease forwards;
 }
 
 .animated-card p {
@@ -184,6 +185,7 @@ section h2 {
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
+  animation: fadeIn 5s ease forwards;
 }
 
 .team-member h3 {
