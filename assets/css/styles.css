@@ -114,18 +114,6 @@ section h2 {
   margin-bottom: 50px;
 }
 
-
-/* .server-card {
-  width: 30%;
-  background-color: rgba(255, 255, 255, 0.1);
-  justify-content: space-around;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  animation: fadeIn 5s ease forwards;
-} */
-
 .server-card p {
   margin: 10px 0;
   font-size: 16px;
@@ -176,13 +164,6 @@ section h2 {
 .social-buttons a:hover {
   background-color: #444;
 }
-/* 
-#team {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 20px;
-} */
 
 #team h2 {
   font-size: 28px;
