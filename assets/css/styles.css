@@ -53,8 +53,16 @@ body {
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
-  animation: fadeIn 5s ease forwards;
+  animation: fadeIn 1s ease-in-out forwards;
+  transition: transform 0.3s;
+  overflow: hidden;
 }
+
+.animated-card:hover {
+  background-color: rgba(255, 255, 255, 0.268);
+  transform: scale(1.1);
+}
+
 
 .animated-card p {
   font-size: 16px;
@@ -86,6 +94,11 @@ header h1 {
   font-size: 36px;
   margin-bottom: 20px;
   color: gold;
+  transition: color 0.3s;
+}
+
+header h1:hover {
+  color: orange;
 }
 
 nav ul {
@@ -93,15 +106,28 @@ nav ul {
 }
 
 nav ul li {
-  display: inline;
+  display: inline-block;
   margin-right: 20px;
+  transition: transform 0.3s;
 }
+
+nav ul li:hover {
+  transform: scale(1.1);
+}
+
 
 nav ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
+  transition: color 0.3s;
 }
+
+nav ul li a:hover {
+  color: orange;
+  transform: scale(1.1);
+}
+
 
 section {
   padding: 40px 0;
@@ -130,7 +156,7 @@ section h2 {
   text-decoration: none;
   margin-top: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s;
 }
 
 .server-card a:hover {
@@ -144,12 +170,14 @@ section h2 {
 
 .social-buttons a {
   width: 30%;
-  justify-content: space-around;
+  display: inline-block;
+  /* justify-content: space-around; */
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
-  animation: fadeIn 5s ease forwards;
+  animation: fadeIn 1s ease-in-out forwards;
+  transition: transform 0.3s;
 }
 
 .telegram-button {
@@ -167,6 +195,8 @@ section h2 {
 
 .social-buttons a:hover {
   background-color: #444;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
 }
 
 #team {
@@ -185,7 +215,12 @@ section h2 {
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
-  animation: fadeIn 5s ease forwards;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.team-member:hover {
+  background-color: rgba(255, 255, 255, 0.268);
+  transform: scale(1.1);
 }
 
 .team-member h3 {
@@ -217,14 +252,33 @@ section h2 {
 }
 
 .team-member a:hover {
-  background-color: #677bc4;
+  background-color: #444;
 }
 
-
-
 footer {
-  background-color: #8b0000;
-  text-align: center;
-  padding: 10px 0;
+  background-color: #333;
   color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+footer a.email {
+  color: #fff;
+  text-decoration: none;
 }
