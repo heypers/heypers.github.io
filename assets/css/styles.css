@@ -35,6 +35,11 @@ body {
   padding: 20px;
 }
 
+#about {
+  text-align: center;
+  padding: 40px 0;
+}
+
 #animated-cards {
   display: flex;
   justify-content: space-around;
@@ -43,13 +48,11 @@ body {
 }
 
 .animated-card {
-  width: 30%;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
-  animation: fadeIn 5s ease forwards;
 }
 
 .animated-card p {
@@ -165,19 +168,22 @@ section h2 {
   background-color: #444;
 }
 
+#team {
+  text-align: center;
+  padding: 40px 0;
+}
+
 #team h2 {
   font-size: 28px;
   margin-bottom: 20px;
 }
 
 .team-member {
-  width: 30%;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
   text-align: center;
-  animation: fadeIn 5s ease forwards;
 }
 
 .team-member h3 {
@@ -205,12 +211,14 @@ section h2 {
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  background-color: #7289da;
   transition: background-color 0.3s;
 }
 
 .team-member a:hover {
   background-color: #677bc4;
 }
+
 
 
 footer {
