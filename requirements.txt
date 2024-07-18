@@ -3,3 +3,4 @@ pymongo[snappy,gssapi,srv,tls]
 dnspython
 django-allauth
 python-dotenv
+requests
