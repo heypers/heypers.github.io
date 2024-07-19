@@ -21,9 +21,8 @@ limitations under the License.
     <meta charset="UTF-8">
     <meta property="og:site_name" content="Визитка Heypers Project" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heypers Project</title>
-    <meta name='description'
-        content='Heypers Project'>
+    <title>Heypers Project | Ошибка</title>
+    <meta name='description' content='Heypers Project | Ошибка'>
     <meta name="author" content="Heypers Team">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -42,11 +41,17 @@ limitations under the License.
         </nav>
     </header>
 
+    <main class="error">
+        <h2>Ошибка</h2>
+        <p>{{ message }}</p>
+    </main>
+
     <footer>
         <a href="/license">License</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/policy">Project Policy</a>
-        <p>По вопросам рекламы и сотрудничества</p><a href="mailto:heypers.team@gmail.com" class="email">heypers.team@gmail.com</a>
+        <p>По вопросам рекламы и сотрудничества</p><a href="mailto:heypers.team@gmail.com"
+            class="email">heypers.team@gmail.com</a>
         <p>&copy; 2023 Heypers Project. Все права защищены.</p>
     </footer>
 </body>

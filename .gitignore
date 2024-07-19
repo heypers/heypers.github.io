@@ -2,7 +2,9 @@ node*
 discord.js
 package*
 staticfiles
-*config
+config.py
+
+
 # misc
 .venv
 .idea

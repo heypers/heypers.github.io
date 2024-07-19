@@ -63,40 +63,6 @@ body {
   transform: scale(1.1);
 }
 
-.privacy-policy {
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-.privacy-policy h1, .privacy-policy h2, .privacy-policy h3 {
-  color: #444;
-}
-.privacy-policy p {
-  line-height: 1.6;
-}
-
-.project-policy {
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 800px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-.project-policy h1, .project-policy h2, .project-policy h3 {
-  color: #444;
-}
-.project-policy p {
-  line-height: 1.6;
-}
-
 .animated-card p {
   font-size: 16px;
   line-height: 1.6;
@@ -315,3 +281,51 @@ footer a.email {
   color: #fff;
   text-decoration: none;
 }
+
+
+/* POLICY STYLES */
+.privacy-policy {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+.privacy-policy h1, .privacy-policy h2, .privacy-policy h3 {
+  color: #444;
+}
+.privacy-policy p {
+  line-height: 1.6;
+}
+
+.project-policy {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+.project-policy h1, .project-policy h2, .project-policy h3 {
+  color: #444;
+}
+.project-policy p {
+  line-height: 1.6;
+}
+/* POLICY STYLES END */
+
+
+/* ERROR STYLES */
+.error h1 {
+  color: rgb(207, 22, 22);
+}
+
+.error p {
+  color: rgb(118, 207, 22);
+}
+/* ERROR STYLES END */
