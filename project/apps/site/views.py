@@ -1,11 +1,41 @@
 
 from core import Config
 import requests
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 from django.conf import settings
 from django.contrib.sessions.models import Session
+from .models import Information
+from core.app.forms import InformationForm
 
+def information_list(request):
+    informations = Information.objects.all()
+    return render(request, 'information_list.html', {'informations': informations})
+
+def information_detail(request, pk):
+    information = get_object_or_404(Information, pk=pk)
+    return render(request, 'information_detail.html', {'information': information})
+
+def information_edit(request, pk):
+    information = get_object_or_404(Information, pk=pk)
+    if request.method == "POST":
+        form = InformationForm(request.POST, instance=information)
+        if form.is_valid():
+            information = form.save(commit=True)
+            return redirect('information_detail', pk=information.pk)
+    else:
+        form = InformationForm(instance=information)
+    return render(request, 'information_edit.html', {'form': form})
+
+def information_create(request):
+    if request.method == "POST":
+        form = InformationForm(request.POST)
+        if form.is_valid():
+            information = form.save(commit=True)
+            return redirect('information_detail', pk=information.pk)
+    else:
+        form = InformationForm()
+    return render(request, 'information_create.html', {'form': form})
 
 def oauth2_login_redirect(request):
     code = request.GET.get('code')

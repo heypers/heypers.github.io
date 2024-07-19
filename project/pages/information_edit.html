@@ -1,0 +1,12 @@
+{% extends "hrl.html" %}
+
+{% block content %}
+    <div class="island">
+        <h1>Редактировать {{ form.instance.title }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}

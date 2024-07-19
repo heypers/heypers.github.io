@@ -1,0 +1,13 @@
+{% extends "hrl.html" %}
+
+{% block content %}
+    <div class="island">
+        <h2>Персонажи</h2>
+        <ul>
+            {% for character in characters %}
+                <li><a href="{% url 'character_detail' character.pk %}">{{ character.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'information_create' %}" class="edit-button">Добавить персонажа</a>
+    </div>
+{% endblock %}
