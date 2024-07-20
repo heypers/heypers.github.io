@@ -4,3 +4,4 @@ dnspython
 django-allauth
 python-dotenv
 requests
+markdown
