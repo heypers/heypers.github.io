@@ -1,21 +1,45 @@
+"""
+Copyright 2023 mr_fortuna
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
+import requests
+from core import InformationForm
+from django.http import HttpResponseBadRequest
+from django.shortcuts import render, redirect, get_object_or_404
 
 from core import Config
-import requests
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
-from django.conf import settings
-from django.contrib.sessions.models import Session
+from . import login_required
 from .models import Information
-from core.app.forms import InformationForm
 
+
+# from django.conf import settings
+# from django.contrib.sessions.models import Session
+
+@login_required
 def information_list(request):
     informations = Information.objects.all()
     return render(request, 'information_list.html', {'informations': informations})
 
+
+@login_required
 def information_detail(request, pk):
     information = get_object_or_404(Information, pk=pk)
     return render(request, 'information_detail.html', {'information': information})
 
+
+@login_required
 def information_edit(request, pk):
     information = get_object_or_404(Information, pk=pk)
     if request.method == "POST":
@@ -27,6 +51,8 @@ def information_edit(request, pk):
         form = InformationForm(instance=information)
     return render(request, 'information_edit.html', {'form': form})
 
+
+@login_required
 def information_create(request):
     if request.method == "POST":
         form = InformationForm(request.POST)
@@ -36,6 +62,7 @@ def information_create(request):
     else:
         form = InformationForm()
     return render(request, 'information_create.html', {'form': form})
+
 
 def oauth2_login_redirect(request):
     code = request.GET.get('code')
@@ -86,17 +113,8 @@ def oauth2_login_redirect(request):
     return redirect('hrl')
 
 
+@login_required
 def hrl(request):
-    if 'user' not in request.session:
-        return redirect('login')
-
-    user = request.session['user']
-    access_token = request.session.get('access_token')
-
-    if not access_token:
-        print('No access token in session')
-        return redirect('login')
-
     return render(request, "hrl.html")
 
 
