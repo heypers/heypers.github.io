@@ -5,3 +5,4 @@ django-allauth
 python-dotenv
 requests
 markdown
+python-decouple

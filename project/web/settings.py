@@ -15,8 +15,13 @@ limitations under the License.
 """
 
 import os
-from dotenv import load_dotenv
+from decouple import config
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
+
+
+def str_to_bool(value):
+    return value.lower() in ('true', '1', 't', 'yes', 'y')
 
 
 # Build
@@ -27,9 +32,8 @@ SESSION_COOKIE_NAME = 'heypers'
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_AGE = 1036800
 SECRET_KEY = os.getenv("DJANGO_KEY")
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = str_to_bool(config('DEBUG', default='False'))
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -74,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'web.wsgi.application'
 
-
 # Database
 
 DATABASES = {
@@ -83,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 
@@ -101,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 
@@ -121,7 +122,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 
