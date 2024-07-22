@@ -15,53 +15,110 @@ limitations under the License.
 """
 
 import requests
-from core import InformationForm
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, Http404
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from core import Config
-from . import login_required
-from .models import Information
+from .model_map import MODEL_MAP
+from . import login_required, permission_check
+from core.app import InformationForm, BaseModelForm
 
 
-# from django.conf import settings
-# from django.contrib.sessions.models import Session
+class BaseModelListView(ListView):
+    template_name = 'base_model_list.html'
 
-@login_required
-def information_list(request):
-    informations = Information.objects.all()
-    return render(request, 'information_list.html', {'informations': informations})
+    def get_queryset(self):
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        if model is None:
+            raise Http404(f"Model '{model_name}' not found.")
+        return model.objects.all()
 
-
-@login_required
-def information_detail(request, pk):
-    information = get_object_or_404(Information, pk=pk)
-    return render(request, 'information_detail.html', {'information': information})
-
-
-@login_required
-def information_edit(request, pk):
-    information = get_object_or_404(Information, pk=pk)
-    if request.method == "POST":
-        form = InformationForm(request.POST, instance=information)
-        if form.is_valid():
-            information = form.save(commit=True)
-            return redirect('information_detail', pk=information.pk)
-    else:
-        form = InformationForm(instance=information)
-    return render(request, 'information_edit.html', {'form': form})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        context['model_verbose_name_plural'] = model._meta.verbose_name_plural
+        context['model_name'] = model_name
+        return context
 
 
-@login_required
-def information_create(request):
-    if request.method == "POST":
-        form = InformationForm(request.POST)
-        if form.is_valid():
-            information = form.save(commit=True)
-            return redirect('information_detail', pk=information.pk)
-    else:
-        form = InformationForm()
-    return render(request, 'information_create.html', {'form': form})
+class BaseModelDetailView(DetailView):
+    template_name = 'base_model_detail.html'
+
+    def get_object(self):
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        if model is None:
+            raise Http404(f"Model '{model_name}' not found.")
+        pk = self.kwargs['pk']
+        return get_object_or_404(model, pk=pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        model_name = self.kwargs['model']
+        context['model_name'] = model_name
+        context['edit_url'] = reverse(
+            'base_model_update', kwargs={'model': model_name, 'pk': self.object.pk}
+        )
+        print(f"edit_url: {context['edit_url']}")
+        return context
+
+
+class BaseModelFormView:
+    template_name = 'base_model_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        context['model_name'] = model_name
+        context['verbose_name'] = model._meta.verbose_name
+        context['verbose_name_plural'] = model._meta.verbose_name_plural
+        return context
+
+
+class BaseModelCreateView(BaseModelFormView, CreateView):
+    def get_form_class(self):
+        model_name = self.kwargs['model']
+        if model_name == 'information':
+            return InformationForm
+        return BaseModelForm
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        if model is None:
+            raise Http404(f"Model '{model_name}' not found.")
+        self.object.__class__ = model
+        self.object.save()
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        model_name = self.kwargs['model']
+        return reverse('base_model_detail', kwargs={'model': model_name, 'pk': self.object.pk})
+
+
+class BaseModelUpdateView(BaseModelFormView, UpdateView):
+    def get_form_class(self):
+        model_name = self.kwargs['model']
+        if model_name == 'information':
+            return InformationForm
+        return BaseModelForm
+
+    def get_object(self):
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        if model is None:
+            raise Http404(f"Model '{model_name}' not found.")
+        pk = self.kwargs['pk']
+        return get_object_or_404(model, pk=pk)
+
+    def get_success_url(self):
+        model_name = self.kwargs['model']
+        return reverse('base_model_detail', kwargs={'model': model_name, 'pk': self.object.pk})
 
 
 def oauth2_login_redirect(request):
@@ -107,13 +164,14 @@ def oauth2_login_redirect(request):
         'email': user_info.get('email')
     }
 
-    if user_id not in Config.ALLOWED_USER_IDS:
+    if user_id not in Config.SCENARIST_IDS:
         return render(request, 'error.html', {'message': 'Unauthorized user'})
 
     return redirect('hrl')
 
 
 @login_required
+@permission_check('scenarist')
 def hrl(request):
     return render(request, "hrl.html")
 

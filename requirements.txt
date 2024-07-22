@@ -6,3 +6,4 @@ python-dotenv
 requests
 markdown
 python-decouple
+addict

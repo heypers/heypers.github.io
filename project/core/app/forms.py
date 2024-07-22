@@ -14,11 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from apps.site.models import Information
+from apps.site.models import Information, BaseModel
 from django import forms
 
 
 class InformationForm(forms.ModelForm):
     class Meta:
         model = Information
+        fields = ['title', 'content']
+
+class BaseModelForm(forms.ModelForm):
+    class Meta:
+        model = BaseModel
         fields = ['title', 'content']
