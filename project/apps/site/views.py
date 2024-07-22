@@ -59,6 +59,8 @@ class BaseModelDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         model_name = self.kwargs['model']
         context['model_name'] = model_name
+        # чета чекнуть как работает реверс и раньше было иначе, типа просто ретурн контекст и все
+        # вон там коммит -> https://github.com/heypers/heypers.github.io/commit/190bf38da939353ddc256366f74d4a810504ae22
         context['edit_url'] = reverse(
             'base_model_update', kwargs={'model': model_name, 'pk': self.object.pk}
         )
