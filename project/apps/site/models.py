@@ -18,6 +18,7 @@ import markdown
 from django.db import models
 from django.utils.safestring import mark_safe
 
+
 class BaseModel(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
@@ -26,16 +27,24 @@ class BaseModel(models.Model):
         abstract = True
         app_label = 'site'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     def get_markdown_content(self):
         md = markdown.Markdown(extensions=['extra', 'nl2br'])
         return mark_safe(md.convert(self.content))
 
 
 class Information(BaseModel):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
 
 class Character(BaseModel):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
 
 class Object(BaseModel):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

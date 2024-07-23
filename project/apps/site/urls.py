@@ -32,11 +32,8 @@ urlpatterns = [
     path("license/", views.license, name="license"),
     path("policy/", views.policy, name="policy"),
 
-    path('<str:model>/create/', BaseModelCreateView.as_view(),
-         name='base_model_create'),
-    path('<str:model>/<int:pk>/edit/',
-         BaseModelUpdateView.as_view(), name='base_model_update'),
+    path('<str:model>/create/', BaseModelCreateView.as_view(), name='base_model_create'),
+    path('<str:model>/<int:pk>/edit/', BaseModelUpdateView.as_view(), name='base_model_update'),
     path('<str:model>/', BaseModelListView.as_view(), name='base_model_list'),
-    path('<str:model>/<int:pk>/', BaseModelDetailView.as_view(),
-         name='base_model_detail'),
+    path('<str:model>/<int:pk>/', BaseModelDetailView.as_view(), name='base_model_detail'),
 ]

@@ -15,18 +15,20 @@ limitations under the License.
 """
 
 import requests
-from django.http import HttpResponseBadRequest, Http404
+from django.http import HttpResponseBadRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from core import Config
 from .model_map import MODEL_MAP
 from . import login_required, permission_check
-from core.app import InformationForm, BaseModelForm
+from core.app.forms import InformationForm, BaseModelForm, CharacterForm, ObjectForm
+from .mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
-class BaseModelListView(ListView):
+class BaseModelListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     template_name = 'base_model_list.html'
+    required_permission = 'scenarist'
 
     def get_queryset(self):
         model_name = self.kwargs['model']
@@ -44,8 +46,9 @@ class BaseModelListView(ListView):
         return context
 
 
-class BaseModelDetailView(DetailView):
+class BaseModelDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     template_name = 'base_model_detail.html'
+    required_permission = 'scenarist'
 
     def get_object(self):
         model_name = self.kwargs['model']
@@ -59,34 +62,23 @@ class BaseModelDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         model_name = self.kwargs['model']
         context['model_name'] = model_name
-        # чета чекнуть как работает реверс и раньше было иначе, типа просто ретурн контекст и все
-        # вон там коммит -> https://github.com/heypers/heypers.github.io/commit/190bf38da939353ddc256366f74d4a810504ae22
         context['edit_url'] = reverse(
-            'base_model_update', kwargs={'model': model_name, 'pk': self.object.pk}
+            'base_model_update', kwargs={'model': model_name, 'pk': self.object.pk}, current_app='site'
         )
-        print(f"edit_url: {context['edit_url']}")
         return context
 
 
-class BaseModelFormView:
-    template_name = 'base_model_form.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        model_name = self.kwargs['model']
-        model = MODEL_MAP.get(model_name)
-        context['model_name'] = model_name
-        context['verbose_name'] = model._meta.verbose_name
-        context['verbose_name_plural'] = model._meta.verbose_name_plural
-        return context
-
-
-class BaseModelCreateView(BaseModelFormView, CreateView):
+class BaseModelCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    required_permission = 'scenarist'
     def get_form_class(self):
         model_name = self.kwargs['model']
         if model_name == 'information':
             return InformationForm
-        return BaseModelForm
+        elif model_name == 'character':
+            return CharacterForm
+        elif model_name == 'object':
+            return ObjectForm
+        raise Http404(f"Model '{model_name}' not found.")
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -96,14 +88,16 @@ class BaseModelCreateView(BaseModelFormView, CreateView):
             raise Http404(f"Model '{model_name}' not found.")
         self.object.__class__ = model
         self.object.save()
-        return redirect(self.get_success_url())
+
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         model_name = self.kwargs['model']
         return reverse('base_model_detail', kwargs={'model': model_name, 'pk': self.object.pk})
 
 
-class BaseModelUpdateView(BaseModelFormView, UpdateView):
+class BaseModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    required_permission = 'scenarist'
     def get_form_class(self):
         model_name = self.kwargs['model']
         if model_name == 'information':

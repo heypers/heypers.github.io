@@ -6,6 +6,6 @@
         <div class="markdown-content">
             {{ object.content|safe }}
         </div>
-        <a href="{{ edit_url }}" class="edit-button">Редактировать</a>
+        <a href="{% url 'base_model_update' model=model_name pk=object.pk %}" class="edit-button">Редактировать</a>
     </div>
 {% endblock %}
