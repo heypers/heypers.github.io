@@ -32,7 +32,7 @@ SESSION_COOKIE_NAME = 'heypers'
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_AGE = 1036800
 SECRET_KEY = os.getenv("DJANGO_KEY")
-DEBUG = str_to_bool(config('DEBUG', default='False'))
+DEBUG = str_to_bool(config('DEBUG', default='True'))
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -108,15 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-LANGUAGES = [
-    ('en', _('English')),
-    ('ru', _('Русский')),
-]
-
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -127,10 +118,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-
+    os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 

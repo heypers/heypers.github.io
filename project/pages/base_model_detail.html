@@ -1,0 +1,11 @@
+{% extends "hrl.html" %}
+
+{% block content %}
+    <div class="island">
+        <h1>{{ object.title }}</h1>
+        <div class="markdown-content">
+            {{ object.content|safe }}
+        </div>
+        <a href="{% url 'base_model_update' model=model_name pk=object.pk %}" class="edit-button">Редактировать</a>
+    </div>
+{% endblock %}

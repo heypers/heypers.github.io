@@ -1,1 +1,1 @@
-from .decorators import login_required
+from .decorators import login_required, permission_check

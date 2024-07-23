@@ -107,14 +107,10 @@ limitations under the License.
     </header>
 
     <div class="info">
-        <nav>
-            <ul>
-                <li><a href="{% url 'information_list' %}">Информация</a></li>
-            </ul>
-        </nav>
+        {% load custom_tags %}
+        {% model_navigation %}
         <div class="content">
-            {% block content %}
-            {% endblock %}
+            {% block content %}{% endblock %}
         </div>
     </div>
 

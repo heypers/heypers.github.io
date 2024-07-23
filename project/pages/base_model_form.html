@@ -2,11 +2,11 @@
 
 {% block content %}
     <div class="island">
-        <h1>Добавить информацию</h1>
+        <h1>{{ verbose_name }}</h1>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Создать</button>
+            <button type="submit">Сохранить</button>
         </form>
     </div>
 {% endblock %}

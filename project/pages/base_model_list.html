@@ -1,0 +1,15 @@
+{% extends "hrl.html" %}
+
+{% block content %}
+<div class="island">
+    <h1>{{ model_verbose_name_plural }}</h1>
+    <ul>
+        {% for object in object_list %}
+        <li>
+            <a href="{% url 'base_model_detail' model=model_name pk=object.pk %}">{{ object.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'base_model_create' model=model_name %}">Добавить {{ model_verbose_name_plural }}</a>
+</div>
+{% endblock %}
