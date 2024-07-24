@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from apps.site.models import Information, BaseModel, Character, Object, Protocol
+from apps.site.models import Information, BaseModel, Character, Object, Protocol, Plot, Lore, Location, Department, Document, Organization, Group, Technology
 from django import forms
 
 
@@ -23,10 +23,12 @@ class InformationForm(forms.ModelForm):
         model = Information
         fields = '__all__'
 
+
 class CharacterForm(forms.ModelForm):
     class Meta:
         model = Character
         fields = '__all__'
+
 
 class ObjectForm(forms.ModelForm):
     class Meta:
@@ -38,6 +40,55 @@ class ProtocolForm(forms.ModelForm):
     class Meta:
         model = Protocol
         fields = '__all__'
+
+
+class LoreForm(forms.ModelForm):
+    class Meta:
+        model = Lore
+        fields = '__all__'
+
+
+class PlotForm(forms.ModelForm):
+    class Meta:
+        model = Plot
+        fields = '__all__'
+
+
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = '__all__'
+
+
+class DepartmentForm(forms.ModelForm):
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+
+class OrganizationForm(forms.ModelForm):
+    class Meta:
+        model = Organization
+        fields = '__all__'
+
+
+class GroupForm(forms.ModelForm):
+    class Meta:
+        model = Group
+        fields = '__all__'
+
+
+class TechnologyForm(forms.ModelForm):
+    class Meta:
+        model = Technology
+        fields = '__all__'
+
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = '__all__'
+
 
 class BaseModelForm(forms.ModelForm):
     class Meta:

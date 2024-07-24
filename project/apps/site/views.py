@@ -23,7 +23,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from core import Config
 from .model_map import MODEL_MAP
 from . import login_required, permission_check
-from core.app.forms import InformationForm, CharacterForm, ObjectForm, ProtocolForm
+from core.app.forms import InformationForm, CharacterForm, ObjectForm, ProtocolForm, LocationForm, LoreForm, PlotForm, DepartmentForm, DocumentForm, OrganizationForm, GroupForm, TechnologyForm
 from .mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -55,6 +55,8 @@ class BaseModelListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
 
 class BaseModelDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'base_model_detail.html'
+
     def get_object(self):
         model_name = self.kwargs['model']
         model = MODEL_MAP.get(model_name)
@@ -79,14 +81,22 @@ class BaseModelCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
 
     def get_form_class(self):
         model_name = self.kwargs['model']
-        if model_name == 'information':
-            return InformationForm
-        elif model_name == 'character':
-            return CharacterForm
-        elif model_name == 'object':
-            return ObjectForm
-        elif model_name == "protocol":
-            return ProtocolForm
+        form_classes = {
+            'information': InformationForm,
+            'lore': LoreForm,
+            'plot': PlotForm,
+            'location': LocationForm,
+            'department': DepartmentForm,
+            'organization': OrganizationForm,
+            'object': ObjectForm,
+            'protocol': ProtocolForm,
+            'character': CharacterForm,
+            'group': GroupForm,
+            'technology': TechnologyForm,
+            'document': DocumentForm
+        }
+        if model_name in form_classes:
+            return form_classes[model_name]
         raise Http404(f"Model '{model_name}' not found.")
 
     def form_valid(self, form):
@@ -111,14 +121,22 @@ class BaseModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateVie
 
     def get_form_class(self):
         model_name = self.kwargs['model']
-        if model_name == 'information':
-            return InformationForm
-        elif model_name == 'character':
-            return CharacterForm
-        elif model_name == 'object':
-            return ObjectForm
-        elif model_name == "protocol":
-            return ProtocolForm
+        form_classes = {
+            'information': InformationForm,
+            'lore': LoreForm,
+            'plot': PlotForm,
+            'location': LocationForm,
+            'department': DepartmentForm,
+            'organization': OrganizationForm,
+            'object': ObjectForm,
+            'protocol': ProtocolForm,
+            'character': CharacterForm,
+            'group': GroupForm,
+            'technology': TechnologyForm,
+            'document': DocumentForm
+        }
+        if model_name in form_classes:
+            return form_classes[model_name]
         raise Http404(f"Model '{model_name}' not found.")
 
     def get_object(self):

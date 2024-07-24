@@ -44,10 +44,6 @@ class Information(BaseModel):
         verbose_name_plural = "Информация"
         app_label = 'site'
 
-    def get_markdown_content(self):
-        md = markdown.Markdown(extensions=['extra', 'nl2br'])
-        return mark_safe(md.convert(self.content))
-
 
 class Character(BaseModel):
     def __init__(self, *args, **kwargs):
@@ -57,10 +53,6 @@ class Character(BaseModel):
         verbose_name = "Персонаж"
         verbose_name_plural = "Персонажи"
         app_label = 'site'
-
-    def get_markdown_content(self):
-        md = markdown.Markdown(extensions=['extra', 'nl2br'])
-        return mark_safe(md.convert(self.content))
 
 
 class Object(BaseModel):
@@ -72,10 +64,6 @@ class Object(BaseModel):
         verbose_name_plural = "Объекты"
         app_label = 'site'
 
-    def get_markdown_content(self):
-        md = markdown.Markdown(extensions=['extra', 'nl2br'])
-        return mark_safe(md.convert(self.content))
-
 
 class Protocol(BaseModel):
     def __init__(self, *args, **kwargs):
@@ -86,6 +74,82 @@ class Protocol(BaseModel):
         verbose_name_plural = "Протоколы"
         app_label = 'site'
 
-    def get_markdown_content(self):
-        md = markdown.Markdown(extensions=['extra', 'nl2br'])
-        return mark_safe(md.convert(self.content))
+
+class Lore(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Лор"
+        verbose_name_plural = "Лор"
+        app_label = 'site'
+
+
+class Plot(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Сюжет"
+        verbose_name_plural = "Сюжеты"
+        app_label = 'site'
+
+
+class Location(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Локация"
+        verbose_name_plural = "Локации"
+        app_label = 'site'
+
+
+class Department(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Отдел"
+        verbose_name_plural = "Отделения"
+        app_label = 'site'
+
+
+class Organization(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Организация"
+        verbose_name_plural = "Огранизации"
+        app_label = 'site'
+
+
+class Group(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Группа"
+        verbose_name_plural = "Группы"
+        app_label = 'site'
+
+
+class Technology(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Технология"
+        verbose_name_plural = "Технологии"
+        app_label = 'site'
+
+
+class Document(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Документ"
+        verbose_name_plural = "Документы"
+        app_label = 'site'
