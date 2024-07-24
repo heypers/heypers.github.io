@@ -55,6 +55,10 @@ limitations under the License.
             }
         }
 
+        .info {
+            display: flex;
+        }
+
         .info nav {
             width: 200px;
             background-color: #2f3136;
@@ -74,6 +78,14 @@ limitations under the License.
         .info nav ul li a {
             color: white;
             text-decoration: none;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .info nav ul li a:hover {
+            background-color: #444;
         }
 
         .island {
@@ -81,15 +93,45 @@ limitations under the License.
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
         }
 
         .content {
-            padding: 20px;
             flex-grow: 1;
         }
 
-        .edit-button {
-            margin-top: 20px;
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: #444;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button.submit {
+            background-color: rgb(14, 213, 70);
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .button.delete-button {
+            background-color: #d9534f;
+        }
+
+        .button.delete-button:hover {
+            background-color: #c9302c;
         }
     </style>
 </head>

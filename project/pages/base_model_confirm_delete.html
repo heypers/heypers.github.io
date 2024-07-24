@@ -6,8 +6,8 @@
         <p>Вы уверены, что хотите удалить "{{ object.title }}"?</p>
         <form method="POST">
             {% csrf_token %}
-            <button type="submit">Удалить</button>
-            <a href="{% url 'base_model_detail' model=model_name pk=object.pk %}">Отмена</a>
+            <button type="submit" class="button delete-button">Удалить</button>
+            <a href="{% url 'base_model_detail' model=model_name pk=object.pk %}" class="button submit">Отмена</a>
         </form>
     </div>
 {% endblock %}

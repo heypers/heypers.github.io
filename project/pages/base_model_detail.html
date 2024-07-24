@@ -6,7 +6,7 @@
         <div class="markdown-content">
             {{ object.get_markdown_content|safe }}
         </div>
-        <a href="{% url 'base_model_update' model=model_name pk=object.pk %}" class="edit-button">Редактировать {{ verbose_name }}</a>
-        <a href="{% url 'base_model_delete' model=model_name pk=object.pk %}" class="delete-button">Удалить {{ verbose_name }}</a>
+        <a href="{% url 'base_model_update' model=model_name pk=object.pk %}" class="button">Редактировать {{ verbose_name }}</a>
+        <a href="{% url 'base_model_delete' model=model_name pk=object.pk %}" class="button delete-button">Удалить {{ verbose_name }}</a>
     </div>
 {% endblock %}
