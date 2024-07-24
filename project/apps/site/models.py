@@ -42,6 +42,7 @@ class Information(BaseModel):
     class Meta:
         verbose_name = "Информация"
         verbose_name_plural = "Информация"
+        app_label = 'site'
 
     def get_markdown_content(self):
         md = markdown.Markdown(extensions=['extra', 'nl2br'])
@@ -55,6 +56,7 @@ class Character(BaseModel):
     class Meta:
         verbose_name = "Персонаж"
         verbose_name_plural = "Персонажи"
+        app_label = 'site'
 
     def get_markdown_content(self):
         md = markdown.Markdown(extensions=['extra', 'nl2br'])
@@ -68,6 +70,7 @@ class Object(BaseModel):
     class Meta:
         verbose_name = "Объект"
         verbose_name_plural = "Объекты"
+        app_label = 'site'
 
     def get_markdown_content(self):
         md = markdown.Markdown(extensions=['extra', 'nl2br'])
@@ -81,6 +84,7 @@ class Protocol(BaseModel):
     class Meta:
         verbose_name = "Протокол"
         verbose_name_plural = "Протоколы"
+        app_label = 'site'
 
     def get_markdown_content(self):
         md = markdown.Markdown(extensions=['extra', 'nl2br'])
