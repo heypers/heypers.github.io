@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from apps.site.models import Information, BaseModel, Character, Object
+from apps.site.models import Information, BaseModel, Character, Object, Protocol
 from django import forms
 
 
@@ -33,6 +33,11 @@ class ObjectForm(forms.ModelForm):
         model = Object
         fields = '__all__'
 
+
+class ProtocolForm(forms.ModelForm):
+    class Meta:
+        model = Protocol
+        fields = '__all__'
 
 class BaseModelForm(forms.ModelForm):
     class Meta:

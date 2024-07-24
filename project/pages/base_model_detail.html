@@ -4,8 +4,9 @@
     <div class="island">
         <h1>{{ object.title }}</h1>
         <div class="markdown-content">
-            {{ object.content|safe }}
+            {{ object.get_markdown_content|safe }}
         </div>
-        <a href="{% url 'base_model_update' model=model_name pk=object.pk %}" class="edit-button">Редактировать</a>
+        <a href="{% url 'base_model_update' model=model_name pk=object.pk %}" class="edit-button">Редактировать {{ verbose_name }}</a>
+        <a href="{% url 'base_model_delete' model=model_name pk=object.pk %}" class="delete-button">Удалить {{ verbose_name }}</a>
     </div>
 {% endblock %}

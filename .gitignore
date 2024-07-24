@@ -3,7 +3,7 @@ discord.js
 package*
 staticfiles
 config.py
-
+*migrations
 
 # misc
 .venv

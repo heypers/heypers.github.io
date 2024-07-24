@@ -17,13 +17,21 @@ limitations under the License.
 import requests
 from django.http import HttpResponseBadRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import DeleteView
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from core import Config
 from .model_map import MODEL_MAP
 from . import login_required, permission_check
-from core.app.forms import InformationForm, BaseModelForm, CharacterForm, ObjectForm
+from core.app.forms import InformationForm, CharacterForm, ObjectForm, ProtocolForm
 from .mixins import LoginRequiredMixin, PermissionRequiredMixin
+
+
+def get_model_verbose_name(model_name):
+    model = MODEL_MAP.get(model_name)
+    if model is None:
+        raise Http404(f"Model '{model_name}' not found.")
+    return model._meta.verbose_name, model._meta.verbose_name_plural
 
 
 class BaseModelListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
@@ -46,10 +54,7 @@ class BaseModelListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return context
 
 
-class BaseModelDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    template_name = 'base_model_detail.html'
-    required_permission = 'scenarist'
-
+class BaseModelDetailView(LoginRequiredMixin, DetailView):
     def get_object(self):
         model_name = self.kwargs['model']
         model = MODEL_MAP.get(model_name)
@@ -61,15 +66,17 @@ class BaseModelDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailVie
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         model_name = self.kwargs['model']
+        verbose_name, verbose_name_plural = get_model_verbose_name(model_name)
         context['model_name'] = model_name
-        context['edit_url'] = reverse(
-            'base_model_update', kwargs={'model': model_name, 'pk': self.object.pk}, current_app='site'
-        )
+        context['verbose_name'] = verbose_name
+        context['verbose_name_plural'] = verbose_name_plural
         return context
 
 
 class BaseModelCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    template_name = 'base_model_form.html'
     required_permission = 'scenarist'
+
     def get_form_class(self):
         model_name = self.kwargs['model']
         if model_name == 'information':
@@ -78,6 +85,8 @@ class BaseModelCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
             return CharacterForm
         elif model_name == 'object':
             return ObjectForm
+        elif model_name == "protocol":
+            return ProtocolForm
         raise Http404(f"Model '{model_name}' not found.")
 
     def form_valid(self, form):
@@ -97,12 +106,20 @@ class BaseModelCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
 
 
 class BaseModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    template_name = 'base_model_form.html'
     required_permission = 'scenarist'
+
     def get_form_class(self):
         model_name = self.kwargs['model']
         if model_name == 'information':
             return InformationForm
-        return BaseModelForm
+        elif model_name == 'character':
+            return CharacterForm
+        elif model_name == 'object':
+            return ObjectForm
+        elif model_name == "protocol":
+            return ProtocolForm
+        raise Http404(f"Model '{model_name}' not found.")
 
     def get_object(self):
         model_name = self.kwargs['model']
@@ -114,7 +131,42 @@ class BaseModelUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateVie
 
     def get_success_url(self):
         model_name = self.kwargs['model']
-        return reverse('base_model_detail', kwargs={'model': model_name, 'pk': self.object.pk})
+        return reverse_lazy('base_model_detail', kwargs={'model': model_name, 'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        model_name = self.kwargs['model']
+        verbose_name, verbose_name_plural = get_model_verbose_name(model_name)
+        context['model_name'] = model_name
+        context['verbose_name'] = verbose_name
+        context['verbose_name_plural'] = verbose_name_plural
+        return context
+
+
+class BaseModelDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    required_permission = 'scenarist'
+    template_name = 'base_model_confirm_delete.html'
+
+    def get_object(self):
+        model_name = self.kwargs['model']
+        model = MODEL_MAP.get(model_name)
+        if model is None:
+            raise Http404(f"Model '{model_name}' not found.")
+        pk = self.kwargs['pk']
+        return get_object_or_404(model, pk=pk)
+
+    def get_success_url(self):
+        model_name = self.kwargs['model']
+        return reverse_lazy('base_model_list', kwargs={'model': model_name})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        model_name = self.kwargs['model']
+        verbose_name, verbose_name_plural = get_model_verbose_name(model_name)
+        context['model_name'] = model_name
+        context['verbose_name'] = verbose_name
+        context['verbose_name_plural'] = verbose_name_plural
+        return context
 
 
 def oauth2_login_redirect(request):

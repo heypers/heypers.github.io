@@ -17,7 +17,7 @@ limitations under the License.
 from django.urls import path
 from . import views
 from django.urls import path
-from .views import BaseModelListView, BaseModelDetailView, BaseModelCreateView, BaseModelUpdateView
+from .views import BaseModelListView, BaseModelDetailView, BaseModelCreateView, BaseModelUpdateView, BaseModelDeleteView
 
 urlpatterns = [
     path('', views.home_redirect, name='home_redirect'),
@@ -36,4 +36,5 @@ urlpatterns = [
     path('<str:model>/<int:pk>/edit/', BaseModelUpdateView.as_view(), name='base_model_update'),
     path('<str:model>/', BaseModelListView.as_view(), name='base_model_list'),
     path('<str:model>/<int:pk>/', BaseModelDetailView.as_view(), name='base_model_detail'),
+    path('<str:model>/<int:pk>/delete/', BaseModelDeleteView.as_view(), name='base_model_delete'),
 ]

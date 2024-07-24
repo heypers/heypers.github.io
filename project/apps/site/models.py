@@ -39,12 +39,49 @@ class Information(BaseModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+    class Meta:
+        verbose_name = "Информация"
+        verbose_name_plural = "Информация"
+
+    def get_markdown_content(self):
+        md = markdown.Markdown(extensions=['extra', 'nl2br'])
+        return mark_safe(md.convert(self.content))
+
 
 class Character(BaseModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+    class Meta:
+        verbose_name = "Персонаж"
+        verbose_name_plural = "Персонажи"
+
+    def get_markdown_content(self):
+        md = markdown.Markdown(extensions=['extra', 'nl2br'])
+        return mark_safe(md.convert(self.content))
+
 
 class Object(BaseModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Объект"
+        verbose_name_plural = "Объекты"
+
+    def get_markdown_content(self):
+        md = markdown.Markdown(extensions=['extra', 'nl2br'])
+        return mark_safe(md.convert(self.content))
+
+
+class Protocol(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Протокол"
+        verbose_name_plural = "Протоколы"
+
+    def get_markdown_content(self):
+        md = markdown.Markdown(extensions=['extra', 'nl2br'])
+        return mark_safe(md.convert(self.content))
