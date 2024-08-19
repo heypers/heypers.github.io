@@ -1,7 +1,0 @@
-<nav>
-    <ul>
-        {% for model in models.values %}
-        <li><a href="{% url 'base_model_list' model.model_name %}">{{ model.verbose_name_plural|capfirst }}</a></li>
-        {% endfor %}
-    </ul>
-</nav>
