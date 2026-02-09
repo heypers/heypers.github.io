@@ -1,16 +1,381 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta name="robots" content="noindex, nofollow">
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; URL=https://heypers.org/">
-  <link rel="canonical" href="https://heypers.org/">
-  <title>Перенаправление...</title>
-  <script>
-    window.location.replace('https://heypers.org/' + window.location.pathname + window.location.search);
-  </script>
+  <meta charset="UTF-8">
+  <title>Heypers - SYSTEM OFFLINE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red: #ff003c;
+      --green: #00ff9c;
+      --lime: #b6ff00;
+      --blue: #00cfff;
+      --bg: #03040a;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Orbitron', monospace;
+      background: var(--bg);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #matrix {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.25;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 2px,
+          transparent 4px);
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 760px;
+      padding: 44px;
+      background: rgba(3, 4, 10, 0.92);
+      border: 1px solid rgba(0, 255, 156, .35);
+      box-shadow:
+        0 0 25px rgba(0, 255, 156, .15),
+        inset 0 0 40px rgba(255, 0, 60, .08);
+      position: relative;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(0, 207, 255, .35);
+      transform: translate(6px, -6px);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 2.6rem;
+      color: var(--red);
+      text-shadow:
+        0 0 10px rgba(255, 0, 60, .8),
+        3px 0 var(--blue),
+        -3px 0 var(--lime);
+      position: relative;
+    }
+
+    h1::before,
+    h1::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    h1::before {
+      color: var(--blue);
+      animation: glitch1 2.5s infinite linear;
+    }
+
+    h1::after {
+      color: var(--lime);
+      animation: glitch2 2s infinite linear;
+    }
+
+    @keyframes glitch1 {
+      0% {
+        clip: rect(0, 9999px, 0, 0)
+      }
+
+      20% {
+        clip: rect(0, 9999px, 35px, 0)
+      }
+
+      40% {
+        clip: rect(0, 9999px, 0, 0)
+      }
+
+      60% {
+        clip: rect(0, 9999px, 55px, 0)
+      }
+
+      100% {
+        clip: rect(0, 9999px, 0, 0)
+      }
+    }
+
+    @keyframes glitch2 {
+      0% {
+        clip: rect(0, 9999px, 0, 0)
+      }
+
+      25% {
+        clip: rect(25px, 9999px, 75px, 0)
+      }
+
+      50% {
+        clip: rect(0, 9999px, 0, 0)
+      }
+
+      75% {
+        clip: rect(40px, 9999px, 90px, 0)
+      }
+
+      100% {
+        clip: rect(0, 9999px, 0, 0)
+      }
+    }
+
+    .status {
+      color: var(--blue);
+      letter-spacing: .15em;
+      font-size: .8rem;
+      margin-bottom: 26px;
+    }
+
+    .log {
+      font-size: .75rem;
+      color: rgba(0, 255, 156, .6);
+      margin-bottom: 28px;
+    }
+
+    .log span {
+      color: var(--lime);
+      animation: blink 1.2s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: .3
+      }
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: .95rem;
+      color: #caffea;
+    }
+
+    .btn {
+      margin-top: 28px;
+      display: inline-block;
+      padding: 16px 32px;
+      background: linear-gradient(90deg, var(--red), var(--lime));
+      color: #000;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow:
+        0 0 18px rgba(255, 0, 60, .7),
+        0 0 40px rgba(182, 255, 0, .4);
+      transition: .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 24px rgba(0, 207, 255, .9),
+        0 0 60px rgba(0, 255, 156, .8);
+    }
+
+    /* Модалка */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal.active {
+      display: flex
+    }
+
+    .modal-box {
+      max-width: 680px;
+      padding: 36px;
+      background: #05060c;
+      border: 1px solid rgba(0, 255, 156, .4);
+      box-shadow: 0 0 40px rgba(0, 255, 156, .25);
+      position: relative;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      color: var(--lime);
+    }
+
+    .modal a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .modal a:hover {
+      color: var(--green);
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      color: var(--red);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: .7rem;
+      color: rgba(0, 255, 156, .4);
+    }
+
+    @media(max-width:600px) {
+      h1 {
+        font-size: 1.9rem
+      }
+
+      .container {
+        padding: 26px
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <p>Переходим на <a href="https://heypers.org/">heypers.org</a>…</p>
+  <canvas id="matrix"></canvas>
+
+  <div class="container">
+
+    <h1 data-text="SYSTEM OFFLINE">SYSTEM OFFLINE</h1>
+
+    <div class="status">▓▓░ MAINTENANCE MODE ░▓▓</div>
+
+    <div class="log">
+      &gt; host connection lost<br>
+      &gt; applying patches... <span>RUNNING</span>
+    </div>
+
+    <p>
+      Система временно выведена из сети.<br>
+      Мы восстанавливаем хост, усиливаем инфраструктуру и возвращаем всё в стабильный онлайн.
+    </p>
+
+    <p>
+      Поддержка проекта напрямую ускоряет восстановление и развитие.
+    </p>
+
+    <div class="btn" id="openModal">SUPPORT SYSTEM</div>
+
+    <div class="footer">© 2021-2026 Heypers Project.</div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="close" id="closeModal">✕</div>
+
+      <h2>💰 Финансовая поддержка</h2>
+
+      <p><strong>Покупка рекламы</strong><br>
+        Продвижение Discord-серверов, YouTube-каналов, Telegram-групп и других проектов.<br>
+        Стоимость обсуждается индивидуально.<br>
+        📧 <a href="mailto:heypers.team@gmail.com">heypers.team@gmail.com</a></p>
+
+      <p><strong>Добровольные пожертвования</strong><br>
+        Поддержка проекта напрямую:</p>
+
+      <p>
+        🔗 <a href="https://www.donationalerts.com/r/mr_f0rtuna4" target="_blank">Donationalerts — ссылка на донат</a>
+      </p>
+
+      <p><strong>Покупка подписки</strong><br>
+        Доступ к эксклюзивному контенту:</p>
+
+      <p>
+        🔗 <a href="https://discord.com/channels/823510265504989194/1138480222019268628/1283698556393361419"
+          target="_blank">Boosty</a>
+      </p>
+
+      <p>
+        Каждый вклад помогает оплачивать хостинг, улучшать ботов, дизайн и развивать новые возможности проекта.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    let w, h, cols, drops;
+    const chars = '01アカサタナハマヤラワアイウエオ0123456789';
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      cols = Math.floor(w / 16);
+      drops = Array(cols).fill(1);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(2,3,10,0.08)';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#00ff9c';
+      ctx.font = '16px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * 16, drops[i] * 16);
+
+        if (drops[i] * 16 > h && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 50);
+
+    const modal = document.getElementById('modal');
+    document.getElementById('openModal').onclick = () => modal.classList.add('active');
+    document.getElementById('closeModal').onclick = () => modal.classList.remove('active');
+    modal.onclick = e => { if (e.target === modal) modal.classList.remove('active'); };
+  </script>
+
 </body>
+
 </html>
