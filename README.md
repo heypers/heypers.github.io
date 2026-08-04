@@ -1,16 +1,8 @@
-<!--
-Copyright (c) Heypers Project, mr_fortuna, Heypers Team.
+# [💫 Official website Heypers Project](https://www.heypers.org/)
 
-Данный файл является частью интеллектуальной собственности проекта Heypers Project.
+---
 
-Использование, модификация и распространение разрешены только в соответствии с официальной лицензией проекта.
+## Note 
 
-Любое копирование, изменение или распространение без явного письменного согласия правообладателей запрещено.
-Обязательно указывать ссылку на официальные ресурсы Heypers Project при любом использовании или распространении информации.
-
-Для получения дополнительной информации о лицензии и условиях использования, посетите официальный сайт Проекта или свяжитесь с правообладателями.
-
-Официальный ресурс: https://heypers.org/license
--->
-
-# [💫 Официальный сайт Heypers Project](https://heypers.org/)
+This repository contains only an alternative page for the main website. 
+This version of the site is used in the event of major maintenance or system outages.
